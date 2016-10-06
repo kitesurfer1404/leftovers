@@ -20,6 +20,6 @@ if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
 else
   python ~/videoctrl.py
 fi
-´´´
+```
 
 * sudo reboot
