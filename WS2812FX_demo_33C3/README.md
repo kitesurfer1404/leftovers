@@ -15,4 +15,4 @@ Features
 
 Hardware setup
 --------------
-![WS2812FX demo](https://raw.githubusercontent.com/kitesurfer1404/leftovers/WS2812FX_demo_33C3/WS2812FX_demo_33C3.jpg)
+![WS2812FX demo](https://raw.githubusercontent.com/kitesurfer1404/leftovers/master/WS2812FX_demo_33C3/WS2812FX_demo_33C3.jpg)
