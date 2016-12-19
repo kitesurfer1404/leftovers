@@ -51,6 +51,7 @@
   
   CHANGELOG
   2016-12-15 initial version
+  2016-12-19 fixed lib, included fireworks FX again
   
 */
 
@@ -116,13 +117,7 @@ void loop() {
     button_state = digitalRead(BUTTON_PIN);
 
     if(button_state == HIGH && button_previous_state == LOW && now - button_last_hightime < BUTTON_LONG_PRESS_DELAY) {
-      uint8_t tmp = ws2812fx.getMode();
-      tmp++;
-      if(tmp == 42 || tmp == 43) {           // ugly fix, because modes 42 and 43 are not compatible with 5 LEDs
-        tmp = 44;                            // I'll fix this after the congress. Stay tuned for updates.
-      }
-      tmp = tmp % ws2812fx.getModeCount();
-      ws2812fx.setMode(tmp);
+      ws2812fx.setMode((ws2812fx.getMode() + 1) % ws2812fx.getModeCount());
     }
   
     if(button_state == LOW && button_previous_state == LOW && now - button_last_hightime > BUTTON_LONG_PRESS_DELAY) {
