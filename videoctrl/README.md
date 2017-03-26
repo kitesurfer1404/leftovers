@@ -1,7 +1,7 @@
 videoctrl - ein Skript, das verschiedene Videos auf Knopfdruck abspielt
 =======================================================================
 
-videoctrl ist z.B. für Museen geeignet, die interaktiv Videos auf Knopfdruck abspielen wollen. Der Code ist für den Raspberry Pi ausgelegt. Eine weitere Funktion ist das saubere Herunterfahren auf Knopfdruck.
+videoctrl ist z.B. für Museen geeignet, die interaktiv Videos auf Knopfdruck abspielen wollen. Der Code ist für den Raspberry Pi ausgelegt. Eine weitere Funktion ist das saubere Herunterfahren auf Knopfdruck. Es werden Taster mit eingebauten LEDs unterstützt. Es leuchtet jeweils der gedrückte und zum Video passende Taster während der Laufzeit des Videos.
 
 Installation
 ------------

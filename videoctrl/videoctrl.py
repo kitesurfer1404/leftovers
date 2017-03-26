@@ -47,6 +47,9 @@ import subprocess
 # Alle Pins werden softwareseitig als Input mit Pull-Up-Widerstand konfiguriert.
 pins = [26, 19, 13, 6, 5]
 
+# Hier die LED-Pins konfigurieren. Für jeden Taster ist eine LED vorgesehen, die
+# während der Video-Wiedergabe leuchten.
+leds = [21, 20, 16, 12, 7]
 
 video_dir = "/home/pi/Videos/"           # In diesem Verzeichnis liegen die Videos
 video_extension = ".mp4"                 # Diese Endung haben alle Videos
@@ -61,9 +64,14 @@ omx = subprocess  # Globale Variable für dem omxplayer-Prozess
 
 GPIO.setmode(GPIO.BCM) # Alle IOs gemäß Broadcom-Chip nummerieren
 
-# Alle Pins auf INPUT mit Pullup-Widerstand stellen
+# Alle Taster-Pins auf INPUT mit Pullup-Widerstand stellen
 for p in pins:
   GPIO.setup(p, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+
+# Alle LED-Pins auf OUTPUT stellen und auf GND schalten
+for l in leds:
+  GPIO.setup(l, GPIO.OUT)
+  GPIO.output(l, False)
 
 
 def shutdown():
@@ -128,6 +136,10 @@ def kill_omx():
   return
 
 
+def leds_off():
+  for l in leds:
+    GPIO.output(l, False)
+
 
 start_fbi()
 
@@ -154,10 +166,18 @@ try:
         #print "Beende omx."
         kill_omx()
 
+
+      #print "Schalte alle LEDs aus"
+      leds_off()
+      #print "Schalte LED ein"
+      GPIO.output(leds[video_id], True)
+
       #print "Starte Video %s%d%s" % (video_dir, video_id, video_extension)
       start_omx(video_dir + str(video_id) + video_extension)
     else:
       if not fbi_running() and not omx_running():
+        #print "Schalte alle LEDs aus"
+        leds_off()
         #print "fbi ist aus. Starte fbi."
         start_fbi()
         
